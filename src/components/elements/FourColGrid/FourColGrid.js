@@ -2,7 +2,6 @@ import React from 'react';
 import './FourColGrid.css';
 
 const FourColGrid = (props) => {
-
     const renderElements = () => {
         const gridElements = props.children.map((element, i)=> {
             return (

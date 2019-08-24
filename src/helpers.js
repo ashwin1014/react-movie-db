@@ -7,9 +7,9 @@ export const calcTime = (time) => {
 
 // Convert a number to $ format
 export const convertMoney = (money) => {
-  var formatter = new Intl.NumberFormat('en-US', {
+  var formatter = new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
     minimumFractionDigits: 0,
   });
   return formatter.format(money);
