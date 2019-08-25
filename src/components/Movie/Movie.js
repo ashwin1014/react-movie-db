@@ -17,12 +17,17 @@ class Movie extends Component {
     }
 
     componentDidMount() {
+    if(localStorage.getItem(`${this.props.match.params.movieId}`)) {
+        const state = JSON.parse(localStorage.getItem(`${this.props.match.params.movieId}`));
+        this.setState({...state})
+    } else {
         this.setState({
             loading: true
         });
         // fetch movie
         const endpoint = `${API_URL}movie/${this.props.match.params.movieId}?api_key=${API_KEY}&language=en-US&include_adult=true`;
         this.fetchItems(endpoint);
+    }
     };
 
     fetchItems = (endpoint) => {
@@ -43,6 +48,8 @@ class Movie extends Component {
                             actors: result.cast,
                             directors,
                             loading: false
+                        }, () => {
+                            localStorage.setItem(`${this.props.match.params.movieId}`, JSON.stringify(this.state));
                         })
                     })
                 })
